@@ -1,3 +1,8 @@
+"""
+TODO:
+* make a separate class for conditional GRU (or several versions of it)
+"""
+
 from __future__ import unicode_literals, print_function, division
 from io import open
 import unicodedata
@@ -304,10 +309,22 @@ class GRU_plain(nn.Module):
     def init_hidden(self, batch_size):
         return Variable(torch.zeros(self.num_layers, batch_size, self.hidden_size)).cuda()
 
-    def forward(self, input_raw, pack=False, input_len=None):
+    def forward(self, input_raw, cond=None, pack=False, input_len=None):
+        """
+        cond - if used, should be a tensor of shape (batch_size,)
+        TODO: update to (batch_size, num_features) for multidim condition
+        """
         if self.has_input:
+            #print(input_raw, input_raw.shape)
+            if cond is not None:
+                #cond_ = cond.repeat(input_raw.size(0), input_raw.size(1))
+                cond_ = torch.ones((input_raw.size(0), input_raw.size(1), 1)).cuda() * cond.view(-1,1,1)
+                # print(cond.shape, input_raw.shape, cond_.shape)
+                input_raw = torch.cat((input_raw, cond_), dim=-1)
             input = self.input(input_raw)
             input = self.relu(input)
+            # print(input, input.shape)
+            # exit(0)
         else:
             input = input_raw
         if pack:

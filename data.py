@@ -184,6 +184,7 @@ def bfs_seq(G, start_id):
 
 def encode_adj(adj, max_prev_node=10, is_full = False):
     '''
+    Very awesome function...
 
     :param adj: n*n, rows means time step, while columns are input dimension
     :param max_degree: we want to keep row number, but truncate column numbers
