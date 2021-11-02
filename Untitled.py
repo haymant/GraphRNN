@@ -26,7 +26,7 @@
 import os
 from Bio import SeqIO
 import subprocess as sp
-from ShaKer.rna_tools import util
+#from ShaKer.rna_tools import util
 import re
 def readfasta(name="RF00162.fa"):
     result = []
@@ -99,7 +99,7 @@ def normalize_seqs(seqs):
 
 
 
-
+'''
 from sklearn.neighbors import NearestNeighbors
 from eden import sequence as eseq
 class NNF:
@@ -148,7 +148,7 @@ def get_all_graphs(fasta='RF00162.fa', maxgr=0):
     if maxgr: 
         seqs=seqs[:maxgr]
     return [mod.getgraph(seq) for seq in seqs]
-
+'''
 
 
 

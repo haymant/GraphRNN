@@ -25,7 +25,7 @@ class Args():
         # self.graph_type = 'community4'
         # self.graph_type = 'grid'
         self.graph_type = 'grid_small'
-        self.graph_type = 'RNA2'
+        #self.graph_type = 'RNA2'
         # self.graph_type = 'ladder_small'
 
         # self.graph_type = 'enzymes'
